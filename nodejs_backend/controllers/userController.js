@@ -19,7 +19,6 @@ userController.authenticate = (req, res) => {
         })
 }; 
 
-
 userController.checkIfUserExists = (req,res) => {
     //for now just hardcoding the message
     res.status(400).send({message: "user does not exists"});
@@ -29,5 +28,6 @@ userController.addUserDetails = (req,res) => {
      //for now just hardcoding the message
     res.status(200).send({message: "Successfully saved User details"})
 }
+
 
 export default userController;
