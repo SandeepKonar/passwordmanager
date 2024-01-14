@@ -76,3 +76,7 @@ button {
 .login-button:hover {
     background-color: #002D62;
 }
+
+.error {
+    color: red;
+}

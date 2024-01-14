@@ -11,7 +11,7 @@ function Login() {
     const [error, setError] = useState(false);
 
     const validateUser = () => {
-        webClient.post('/login', inputs).then(response => {
+        webClient.post('/user/authenticate', inputs).then(response => {
             alert("success - user found");
         }).catch(error => {
             console.log(error);
