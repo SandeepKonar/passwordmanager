@@ -20,13 +20,35 @@ userController.authenticate = (req, res) => {
 }; 
 
 userController.checkIfUserExists = (req,res) => {
-    //for now just hardcoding the message
-    res.status(400).send({message: "user does not exists"});
+    user.findOne({username: req.body.username})
+    .then(usr => {
+        if(!usr) {
+            res.status(404).send({message: 'user not found!'});
+        }else {
+            res.status(200).json(usr);
+        }
+    }).catch(err => {
+        console.log(err);
+        console.log("Error occured while finding user");
+        res.status(500).send({message: 'Error occured while finding user'});
+    })
 }
 
 userController.addUserDetails = (req,res) => {
-     //for now just hardcoding the message
-    res.status(200).send({message: "Successfully saved User details"})
+     const newUser = new user({
+        username: req.body.username,
+        password: req.body.password
+     });
+     newUser.save().then(usr => {
+        if(!usr){
+            res.status(500).send({message: "Error while saving user data"})
+        }else {
+            res.status(200).send({message: "Successfully saved User details"})
+        }
+     }).catch(err => {
+        console.log(err);
+        res.status(500).send({message: "Error while saving user data"})
+    })
 }
 
 

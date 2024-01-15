@@ -21,25 +21,36 @@ function SignUpForm(){
         })
     }
 
+    function saveUserDetails(){
+        webClient.post('/user/addUserDetails', user).then(response => {
+            alert("Sign up Successfull..... Please Login");
+        }).catch(err => {
+            alert("Error occured while saving user details, Please try again");
+        });
+    }
+
+    function checkIfUserExists(){
+        webClient.post('/user/checkIfUserExists', user).then(response => {
+            console.log("resp : " +response);
+            alert("Username already exists! Try with different username");
+        }).catch(error => {
+           if(error.response.status===404) {
+             saveUserDetails();
+           }else if(error.response.status===500) {
+             alert("Internal Server error, Please try again...");
+           }
+        });
+    }
+
     function submitSignUp(event){
        if(user.password!== user.confirmPassword){
              alert("Password and ConfirmPassword should match.. Please recheck and submit");
        }else {
-            webClient.post('/user/checkIfUserExists', user).then(response => {
-                console.log("resp : " +response);
-                alert("Username already exists! Try with different username");
-            }).catch(error => {
-               if(error.response.status===400) {
-                webClient.post('/user/addUserDetails', user).then(response => {
-                    alert("Sign up Successfull, Please Login");
-                }).catch(err => {
-                    alert("Error occured while saving user details, Please try again");
-                });
-               }
-            });
+            checkIfUserExists();
             setUser(emptyUser);
        }
        event.preventDefault();
+       
     }
  
     return <form onSubmit={submitSignUp}>
