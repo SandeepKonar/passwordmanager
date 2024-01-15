@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { webClient } from "../scripts/config";
-import Input from "./Input";
+import {Input} from "./Input";
 
 function Login() {
     const [inputs, setInputs] = useState({

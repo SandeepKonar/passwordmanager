@@ -5,4 +5,8 @@ const router = express.Router();
 
 router.post('/authenticate', userController.authenticate);
 
+router.post('/checkIfUserExists', userController.checkIfUserExists);
+
+router.post('/addUserDetails', userController.addUserDetails);
+
 export default router;
