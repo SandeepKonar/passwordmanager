@@ -10,8 +10,8 @@ const Input = (props) => {
             placeholder={props.placeholder}
             onChange={props.onChange}
             disabled={props.disabled}
+            required
         />
-        {props.error && props.value === '' && <p className="error">{props.name} can't be empty!</p>}
     </div>
 };
 

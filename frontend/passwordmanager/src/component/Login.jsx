@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import { webClient } from "../scripts/config";
-import {Input} from "./Input";
+import { Input } from "./Input";
+import { useDispatch } from 'react-redux';
+import { login } from "../redux/slices/userSlice";
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [inputs, setInputs] = useState({
         "username": "",
         "password": ""
@@ -12,10 +17,12 @@ function Login() {
 
     const validateUser = () => {
         webClient.post('/user/authenticate', inputs).then(response => {
-            alert("success - user found");
+            console.log(`${inputs.username} logged In`);
+            dispatch(login(response.data));
+            navigate('/Home');
         }).catch(error => {
             console.log(error);
-            alert('error ' + error.response.data.message);
+            setError(true);
         });
     };
 
@@ -23,19 +30,13 @@ function Login() {
         event.preventDefault();
         const username = inputs.username;
         const password = inputs.password;
-        if(username.trim() === "")
-            setError(true);
-        else if(password.trim() === "")
-            setError(true);
-        else {
-            const res = validateUser();
-            console.log(res);
-        }
+        const res = validateUser();
+        console.log(res);
+    
     };
 
     const onChange = (event) => {
-        setInputs({...inputs, [event.target.name]: event.target.value});
-        console.log(inputs[event.target.name]);
+        setInputs({ ...inputs, [event.target.name]: event.target.value });
     }
 
     return (
@@ -48,15 +49,16 @@ function Login() {
                     <form className="login-form" onSubmit={handleSubmit} method="POST">
                         <Input
                             id="input1" type="text" name="username" placeholder="username" value={inputs.username}
-                            onChange={onChange} disabled={false} error={error}
+                            onChange={onChange} disabled={false} 
                         ></Input>
                         <Input
                             id="input2" type="password" name="password" placeholder="password" value={inputs.password}
-                            onChange={onChange} disabled={false} error={error}
+                            onChange={onChange} disabled={false} 
                         ></Input>
-                        <input type="submit" className="login-button"/>
+                        <input type="submit" className="login-button" />
                     </form>
-                    <a href="#">Signup</a>
+                    {error && <span class='text-danger'>Invalid credentials. Login failed</span>}
+                    <a href="/SignUpPage">Signup</a>
                 </div>
             </div>
         </>
