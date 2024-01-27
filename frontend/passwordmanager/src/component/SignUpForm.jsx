@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {SignUpInput} from './Input';
 import {Link} from 'react-router-dom';
-import {webClient} from '../scripts/config'
+import {webClient} from '../util/config'
 
 function SignUpForm(){
     const emptyUser = {
