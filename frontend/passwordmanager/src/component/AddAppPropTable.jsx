@@ -12,8 +12,8 @@ function AddAppPropTable({rowCount}) {
                       {
                         Array.from({ length: rowCount }).map((_, index) => (
                           <tr key={index}>
-                            <td className="p-0"><input type="text" className="form-control w-100" placeholder="name"></input></td>
-                            <td className="p-0"><input type="text" className="form-control w-100" placeholder="value"></input></td>
+                            <td className="p-0"><input type="text" className="form-control w-100" placeholder="name" required></input></td>
+                            <td className="p-0"><input type="text" className="form-control w-100" placeholder="value" required></input></td>
                           </tr>
                         ))
                       }

@@ -64,11 +64,17 @@ const AddApp = () => {
           <form>
             <div className="modal-body">
               <label className='form-label' htmlFor="appName">Application Name </label>
-              <input className='form-control' name="name" type='text' value={app.name} onChange={onFormChange} required />
+              <input className='form-control' name="name" type='text' value={app.name} onChange={onFormChange} required 
+                onInvalid={e => e.target.setCustomValidity('application name cannot be blank')} onInput={e => e.target.setCustomValidity('')}
+              />
               <label className='form-label' htmlFor="password">Password </label>
-              <input className='form-control' name="password" type='password' value={app.password} onChange={onFormChange} required />
+              <input className='form-control' name="password" type='password' value={app.password} onChange={onFormChange} required 
+              onInvalid={e => e.target.setCustomValidity('password cannot be blank')} onInput={e => e.target.setCustomValidity('')}
+              />
               <label className='form-label' htmlFor="confirmPassword">Confirm Password </label>
-              <input className='form-control' name="confirmPassword" type='password' onChange={onConfirmPasswordChange} required />
+              <input className='form-control' name="confirmPassword" type='password' onChange={onConfirmPasswordChange} required 
+                onInvalid={e => e.target.setCustomValidity('confirmPassword cannot be blank')} onInput={e => e.target.setCustomValidity('')}
+              />
               {!pwdMatched && <p className='text-danger'>*password mismatch</p>}
               <button type="button" className="btn btn-outline-primary mt-4" onClick={() => setRowCount(prevCount => prevCount + 1)}>Additional Properties</button>
               <AddAppPropTable rowCount={rowCount} />
