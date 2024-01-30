@@ -16,8 +16,9 @@ const AddApp = () => {
   const [rowCount, setRowCount] = useState(0);
   const dispatch = useDispatch();
 
-  const onAddAppSubmit = () => {
-    if (app.name.trim() !== '') {
+  const onAddAppSubmit = (event) => {
+    event.preventDefault();
+    if (app.name.trim() === '') {
       console.log('application name is empty');
     } else if (app.password.trim() === '') {
       console.log('password is empty');
@@ -32,8 +33,8 @@ const AddApp = () => {
           dispatch(updateUser(resp.data));
           var modalElement = document.getElementById('addAppModal');
           var modal = bootstrap.Modal.getInstance(modalElement);
-          modal.hide();
           setRowCount(0);
+          modal.hide();
         }).catch(err => {
           console.log(err);
         });
@@ -61,7 +62,7 @@ const AddApp = () => {
             <h1 className="modal-title fs-5" id="addAppModalLabel">Add Application</h1>
             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <form>
+          <form onSubmit={onAddAppSubmit} method="POST">
             <div className="modal-body">
               <label className='form-label' htmlFor="appName">Application Name </label>
               <input className='form-control' name="name" type='text' value={app.name} onChange={onFormChange} required 
@@ -80,7 +81,7 @@ const AddApp = () => {
               <AddAppPropTable rowCount={rowCount} />
             </div>
             <div className="modal-footer">
-              <button type="submit" className="btn btn-primary" onClick={onAddAppSubmit}>Add</button>
+              <button type="submit" className="btn btn-primary">Add</button>
               <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={() => setRowCount(0)}>Cancel</button>
             </div>
           </form>
