@@ -15,13 +15,13 @@
 }
 
 .btn-primary {
-    background-color: #190482;
+    background-color: rgb(31, 77, 214);
     border-radius: 10px;
     font-weight: 500;
     font-size: 16px;
     height: 35px;
     font-family: serif;
-    color: aliceblue;
+    color: white;
 } 
 
 .nav-bar {

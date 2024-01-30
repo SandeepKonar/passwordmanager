@@ -9,4 +9,6 @@ router.post('/checkIfUserExists', userController.checkIfUserExists);
 
 router.post('/addUserDetails', userController.addUserDetails);
 
+router.post('/addApp', userController.addApp);
+
 export default router;

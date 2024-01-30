@@ -1,9 +1,9 @@
+import mongoose from "mongoose";
 import user from "../schema/userSchema.js";
 
 const userController = {};
 
 userController.authenticate = (req, res) => {
-    let response;
     user.findOne({username: req.body.username})
         .then(usr => {
             if(!usr) {
@@ -50,6 +50,23 @@ userController.addUserDetails = (req,res) => {
         res.status(500).send({message: "Error while saving user data"})
     })
 }
+
+userController.addApp = (req, res) => {
+    user.findOneAndUpdate({username: req.body.username}, {$push: {apps: req.body.app}}, {new: true})
+        .then(updatedUser => {
+            if(updatedUser) {
+                console.dir(updatedUser);
+                res.status(200).json(updatedUser);
+            } else {
+                console.log("user not found!");
+                res.status(400).send({message: "user not found!"});
+            }
+        }).catch(e => {
+            console.log("Failed to update the user. Error occurred " + e);
+            res.status(500).send({message: "Internal server error. Failed to update the user"});
+        })
+}
+
 
 
 export default userController;

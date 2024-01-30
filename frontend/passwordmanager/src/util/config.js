@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { API } from './constants';
 const webClient = axios.create({
-    baseURL: 'http://localhost:3090',
+    baseURL: API.BASE_URL,
     timeout: 1000
 });
 

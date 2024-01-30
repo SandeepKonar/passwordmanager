@@ -17,7 +17,7 @@ a {
     color: slategray;
 }
 
-input[type=text], input[type=password] {
+/* input[type=text], input[type=password] {
     width: 80ch;
     height: 4em;
     border: none;
@@ -30,11 +30,11 @@ input:focus {
     outline: none;
     border-bottom: .2em solid royalblue;
     transform: scale(1.05,1.05);
-}
+} */
 
-button {
+/* button {
     width: 60px;
-}
+} */
 
 .login-container {
     display: flex;

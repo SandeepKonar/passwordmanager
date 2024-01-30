@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { webClient } from "../scripts/config";
+import { webClient } from "../util/config";
 import { Input } from "./Input";
 import { useDispatch } from 'react-redux';
 import { login } from "../redux/slices/userSlice";
 import { useNavigate } from 'react-router-dom';
+import { API } from "../util/constants";
 
 function Login() {
     const dispatch = useDispatch();
@@ -16,7 +17,7 @@ function Login() {
     const [error, setError] = useState(false);
 
     const validateUser = () => {
-        webClient.post('/user/authenticate', inputs).then(response => {
+        webClient.post(API.ENDPOINT_AUTHENTICATE_USER, inputs).then(response => {
             console.log(`${inputs.username} logged In`);
             dispatch(login(response.data));
             navigate('/Home');
