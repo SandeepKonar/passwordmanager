@@ -35,6 +35,11 @@ const AddApp = () => {
           var modal = bootstrap.Modal.getInstance(modalElement);
           setRowCount(0);
           modal.hide();
+          saveApp({
+            name: '',
+            password: '',
+            additionalProperties: []
+          })
         }).catch(err => {
           console.log(err);
         });
