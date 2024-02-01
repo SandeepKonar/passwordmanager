@@ -67,6 +67,22 @@ userController.addApp = (req, res) => {
         })
 }
 
+userController.deleteApp = (req, res) => {
+    user.findOneAndUpdate({username: req.body.username}, {$pull: {apps: {name:req.body.appName}}}, {returnDocument: 'after'})
+        .then(updatedUser => {
+            if(updatedUser) {
+                console.dir(updatedUser);
+                res.status(200).json(updatedUser);
+            } else {
+                console.log("user not found!");
+                res.status(400).send({message: "user not found!"});
+            }
+        }).catch(e => {
+            console.log("Failed to update the user. Error occurred " + e);
+            res.status(500).send({message: "Internal server error. Failed to update the user"});
+        })
+}
+
 
 
 export default userController;

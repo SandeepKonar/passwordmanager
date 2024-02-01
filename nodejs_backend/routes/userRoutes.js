@@ -11,4 +11,6 @@ router.post('/addUserDetails', userController.addUserDetails);
 
 router.post('/addApp', userController.addApp);
 
+router.post('/deleteApp',userController.deleteApp);
+
 export default router;
