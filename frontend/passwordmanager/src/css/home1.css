@@ -7,7 +7,7 @@
     padding: 8px 32px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
     color: #fff;
-    font-family: "McLaren", cursive;
+    font-family: "sarif";
     font-weight: 10;
 }
 
@@ -65,14 +65,14 @@
 }
 
 
-.icon button{
+.icon button[isicon="true"]{
     padding: 1pt;
     width: auto;
     height: auto;
     color: #190482;
 }
 
-.icon button:hover {
+.icon button[isicon="true"]:hover {
     background-color: #190482;
     color: #C2D9FF;
     border: none;
@@ -99,3 +99,4 @@
     display: flex;
     justify-content: space-between;
 }
+
