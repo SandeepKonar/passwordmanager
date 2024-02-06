@@ -1,40 +1,22 @@
 import React, { useState } from "react";
-import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@material-ui/icons/Edit';
-import OpenWithIcon from '@material-ui/icons/OpenWith';
-import VisibilityIcon from '@material-ui/icons/Visibility';
-import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
-import { API } from "../util/constants";
-import { useDispatch, useSelector } from "react-redux";
-import { webClient } from "../util/config";
-import { updateUser } from "../redux/slices/userSlice";
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import OpenWithIcon from '@mui/icons-material/OpenWith';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { useSelector } from "react-redux";
+import DeleteAppModal from "./Modal";
 
-const AppCard1 = ({ appName, appPassword, handleDeleteApp }) => {
+const AppCard1 = ({ appName, appPassword}) => {
     const user = useSelector(store => store.user);
     const maskedAppPassword= appPassword!=null?"**********":"";
     const [isVisible, setVisible] = useState(false);
-    const dispatch = useDispatch();
 
-    function handleDeleteApp(){
-        const req = {
-            "username": user.username,
-            "appName": appName,
-
-        }
-        console.log("entered handleDelete : "  +appName);
-        webClient.post(API.ENDPOINT_DELETE_APP, req)
-        .then(resp => {
-          console.log(`${appName} deleted successfully`);
-          dispatch(updateUser(resp.data));
-          console.log(resp);
-        }).catch(err => {
-          console.log(err);
-        });
-    }   
     return  <div className="col mb-4 app-card">
                 <div className="card h-100">
                     <div className="d-flex flex-row-reverse gap-2 icon">
-                        <button  className="btn rounded-circle b-0" onClick={handleDeleteApp}><DeleteIcon/></button>
+                        <DeleteAppModal appName={appName} username={user.username}/>
+                        <button  isicon="true" className="btn rounded-circle b-0 del-icon"  data-bs-toggle="modal" data-bs-target="#deleteAppModal"><DeleteIcon/></button>
                         {/* <button  className="btn rounded-circle b-0"><EditIcon/></button> */}
                     </div>
                     <div className="card-body">
@@ -47,7 +29,7 @@ const AppCard1 = ({ appName, appPassword, handleDeleteApp }) => {
                         </div>
                     </div>
                     <div className="apps-footer icon">
-                        <button  className="btn rounded-circle b-0"><OpenWithIcon/></button>
+                        <button isicon="true" className="btn rounded-circle b-0"><OpenWithIcon/></button>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import AddIcon from "@material-ui/icons/Add";
+import AddIcon from '@mui/icons-material/Add';
 import AddAppForm from './AddAppForm';
 import AppCard1 from './AppCard1';
 import {useSelector } from "react-redux";
@@ -8,7 +8,7 @@ import {useSelector } from "react-redux";
 function Home1(){
     const user = useSelector(store => store.user);
     return <div>
-        <h1 className= "home-page-header">Welcome {user.username}</h1>
+        <h4 className= "home-page-header">Welcome {user.username}</h4>
         <AddAppForm />
         <div className="container">
             <div className="row row-cols-1 row-cols-md-4 row-cols-sm-3 cards-container">
