@@ -1,0 +1,17 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: none
+  sql:
+    init:
+      mode: always
+      
+datasource:
+  url: jdbc:mysql://localhost:3306
+  username: root
+  credential: root
+  driverclassname: com.mysql.cj.jdbc.Driver
+  connectiontimeout: 10000
+  maxpoolsize: 10
+  schema: password_manager
+  
