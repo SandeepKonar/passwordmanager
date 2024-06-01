@@ -1,8 +1,7 @@
 package learning.projects.spring_backend.model;
 
-import java.sql.Timestamp;
-
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
@@ -22,8 +21,6 @@ public class AppMetadataDetails {
 	@Id
 	private String fieldName;
 	private String fieldValue;
-	private Timestamp createTimestamp;
-	private Timestamp lastUpdatedTimestamp;
 	@Column(name = "isHashed")
 	private boolean isHashed;
 }

@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS APP_PASSWORDS (
     metadata_flag bool,
     app_status varchar(10),
     PRIMARY KEY(app_id),
-    FOREIGN KEY(user_id) REFERENCES USER_DETAILS(user_id)
+    FOREIGN KEY(user_id) REFERENCES USER_DETAILS(user_id) on DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS PASSWORD_METADATA (
@@ -29,5 +29,5 @@ CREATE TABLE IF NOT EXISTS PASSWORD_METADATA (
     last_updated_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     is_hashed bool,
     PRIMARY KEY (app_id, field_name),
-    FOREIGN KEY(app_id) REFERENCES APP_PASSWORDS(app_id)
+    FOREIGN KEY(app_id) REFERENCES APP_PASSWORDS(app_id) on DELETE CASCADE
 );
