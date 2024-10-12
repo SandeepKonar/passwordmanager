@@ -1,0 +1,9 @@
+server:
+  port: 8081
+spring:
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+  application:
+    name: service-registry-test

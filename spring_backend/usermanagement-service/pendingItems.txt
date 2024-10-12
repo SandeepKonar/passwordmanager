@@ -1,0 +1,8 @@
+1. Exception handling
+2. logging
+3. encryption
+
+To explore
+
+AES Encryption
+RSA or ECC for Asymmetric Encryption
